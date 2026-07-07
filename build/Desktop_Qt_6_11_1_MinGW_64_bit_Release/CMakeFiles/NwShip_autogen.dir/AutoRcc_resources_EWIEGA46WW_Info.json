@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Release/NwShip_autogen",
+	"CMAKE_BINARY_DIR" : "D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Release",
+	"CMAKE_CURRENT_BINARY_DIR" : "D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Release",
+	"CMAKE_CURRENT_SOURCE_DIR" : "D:/ProgramData/QtProject/NwShip",
+	"CMAKE_SOURCE_DIR" : "D:/ProgramData/QtProject/NwShip",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "MinGW Makefiles",
+	"INCLUDE_DIR" : "D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Release/NwShip_autogen/include",
+	"INPUTS" : [ "D:/ProgramData/QtProject/NwShip/submarine.ico" ],
+	"LOCK_FILE" : "D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Release/CMakeFiles/NwShip_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "D:/ProgramData/Qt/6.11.1/mingw_64/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Release/CMakeFiles/NwShip_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "D:/ProgramData/QtProject/NwShip/resources.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

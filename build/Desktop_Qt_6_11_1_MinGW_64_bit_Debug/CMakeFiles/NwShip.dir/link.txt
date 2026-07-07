@@ -1,0 +1,3 @@
+D:\ProgramData\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\NwShip.dir/objects.a
+D:\ProgramData\Qt\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\NwShip.dir/objects.a @CMakeFiles\NwShip.dir\objects1.rsp
+D:\ProgramData\Qt\Tools\mingw1310_64\bin\g++.exe -g -mwindows -Wl,--whole-archive CMakeFiles\NwShip.dir/objects.a -Wl,--no-whole-archive -o NwShip.exe -Wl,--out-implib,libNwShip.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\NwShip.dir\linkLibs.rsp

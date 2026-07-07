@@ -1,0 +1,5 @@
+D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/NwShip.dir
+D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/edit_cache.dir
+D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/rebuild_cache.dir
+D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/NwShip_autogen_timestamp_deps.dir
+D:/ProgramData/QtProject/NwShip/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/NwShip_autogen.dir

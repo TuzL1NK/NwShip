@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+a991ea1fbe97b03cd6e4438100d36093 CMakeFiles/NwShip_autogen
+4247a8922da596d9632fadb06b57b0d3 NwShip_autogen/EWIEGA46WW/qrc_resources.cpp
+bc715edf4970d79d8ad716031373796d NwShip_autogen/timestamp
