@@ -29,11 +29,7 @@ cmake --build build/Desktop_Qt_6_11_1_MinGW_64_bit_Release --config Release --pa
 
 运行
 ----
-构建后可执行文件位于构建目录，如：
-
-- build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/NwShip.exe
-- build/Desktop_Qt_6_11_1_MinGW_64_bit_Release/NwShip.exe
-
+右侧release开袋即食
 
 许可与贡献
 ----------
