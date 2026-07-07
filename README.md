@@ -15,21 +15,9 @@ NwShip 是一个基于 Qt 的桌面应用，用于计算并展示潜艇探索航
 --------
 在项目根目录运行：
 
-```bash
-cmake -S . -B build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug -DCMAKE_BUILD_TYPE=Debug
-cmake --build build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug --parallel
-```
-
-发布（Release）构建：
-
-```bash
-cmake -S . -B build/Desktop_Qt_6_11_1_MinGW_64_bit_Release -DCMAKE_BUILD_TYPE=Release
-cmake --build build/Desktop_Qt_6_11_1_MinGW_64_bit_Release --config Release --parallel
-```
-
 运行
 ----
-右侧release开袋即食
+右侧[Releases 页面](https://github.com/TuzL1NK/NwShip/releases)开袋即食
 
 许可与贡献
 ----------
