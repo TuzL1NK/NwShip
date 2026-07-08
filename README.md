@@ -24,17 +24,3 @@ NwShip 是一个基于 Qt 的桌面应用，用于计算并展示潜艇探索航
 注意
 ----------
 潜艇行动路线和航行距离算法为拟合而来，或存在微小误差，请见谅
-
-工具
-----
-项目包含一个简单的文件管理脚本，用于在本地对代码树执行安全的增删改操作：
-
- - `tools/file_manager.py`：命令行工具，支持 `add`、`write`、`delete`、`list` 等子命令，删除前会生成备份。
-
-示例：
-
-```bash
-python tools/file_manager.py add new_dir/new_file.txt --content "Hello"
-python tools/file_manager.py write existing.txt --from-file template.txt
-python tools/file_manager.py delete old_dir --confirm
-```
