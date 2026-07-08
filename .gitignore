@@ -1,0 +1,49 @@
+# Build and generated files
+/build/
+/out/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.exp
+*.ilk
+*.pdb
+*.aps
+
+# CMake / Qt
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+Testing/
+*.qm
+*_autogen/
+moc_*
+ui_*.h
+qrc_*.cpp
+*.pro.user*
+*.qtc_clangd
+*.qbs.user
+*.qmake.stash
+
+# IDE files
+.vs/
+.vscode/
+.idea/
+*.user
+*.user.*
+*.autosave
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Assets shipped with releases (keep tracked in repo if you want; ignore local generated assets)
+/assets/*.bin
+/assets/*.csv
