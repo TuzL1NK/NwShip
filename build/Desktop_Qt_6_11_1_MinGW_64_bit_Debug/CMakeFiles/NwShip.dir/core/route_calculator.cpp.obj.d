@@ -301,4 +301,13 @@ CMakeFiles/NwShip.dir/core/route_calculator.cpp.obj: \
  D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/QSet \
  D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/qset.h \
  D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/qhash.h \
- D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/QtGlobal
+ D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/QtGlobal \
+ D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/QMap \
+ D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/qmap.h \
+ D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/qscopeguard.h \
+ D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/qshareddata.h \
+ D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/qshareddata_impl.h \
+ D:/ProgramData/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map \
+ D:/ProgramData/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tree.h \
+ D:/ProgramData/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_map.h \
+ D:/ProgramData/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h

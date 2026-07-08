@@ -2,6 +2,7 @@
 
 #include <QSet>
 #include <QtGlobal>
+#include <QMap>
 
 #include <algorithm>
 #include <cmath>
@@ -98,6 +99,15 @@ std::optional<RoutePlan> evaluateRoute(const ExplorationPoint &home,
     if (route.isEmpty() || stats.speed <= 0) {
         return std::nullopt;
     }
+
+    // Ensure all points in the route are on the same map
+    const int firstMapId = route.first()->mapId;
+    for (const ExplorationPoint *p : route) {
+        if (p->mapId != firstMapId) {
+            return std::nullopt;
+        }
+    }
+    
 
     const double travelDistance = routeTravelDistance(home, route);
     const int rangeRequired = routeRangeRequired(home, route);
@@ -274,13 +284,29 @@ QVector<RoutePlan> findBestRoutes(const RouteSearchOptions &options)
         return results;
     }
 
-    QSet<QString> seen;
-    const int maxPoints = qMin(options.maxPoints, options.candidates.size());
+    // Group candidates by mapId to avoid cross-map combinations and reduce combinatorial explosion.
+    QMap<int, QVector<ExplorationPoint>> groups;
+    for (const ExplorationPoint &p : options.candidates) {
+        groups[p.mapId].append(p);
+    }
 
-    for (int count = 1; count <= maxPoints; ++count) {
-        QVector<const ExplorationPoint *> current;
-        current.reserve(count);
-        collectCombinations(options, 0, count, current, results, seen);
+    QSet<QString> seen;
+
+    for (auto it = groups.constBegin(); it != groups.constEnd(); ++it) {
+        const QVector<ExplorationPoint> groupCandidates = it.value();
+        if (groupCandidates.isEmpty()) {
+            continue;
+        }
+
+        RouteSearchOptions localOptions = options;
+        localOptions.candidates = groupCandidates;
+
+        const int maxPoints = qMin(localOptions.maxPoints, localOptions.candidates.size());
+        for (int count = 1; count <= maxPoints; ++count) {
+            QVector<const ExplorationPoint *> current;
+            current.reserve(count);
+            collectCombinations(localOptions, 0, count, current, results, seen);
+        }
     }
 
     if (results.size() > options.maxResults) {

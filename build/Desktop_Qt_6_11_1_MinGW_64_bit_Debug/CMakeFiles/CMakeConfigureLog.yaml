@@ -3630,3 +3630,1059 @@ events:
         - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
         - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
 ...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake:13 (find_package)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:283 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "Vulkan"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/Program Files/CMake/share/cmake-4.2/Modules/FindVulkan.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "c:\\Users\\devir\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "WrapVulkanHeaders"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "c:\\Users\\devir\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake:13 (find_package)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:283 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "Vulkan"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/Program Files/CMake/share/cmake-4.2/Modules/FindVulkan.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "c:\\Users\\devir\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "WrapVulkanHeaders"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "c:\\Users\\devir\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake:13 (find_package)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:283 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "Vulkan"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/Program Files/CMake/share/cmake-4.2/Modules/FindVulkan.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "D:\\ProgramData\\Qt\\Tools\\mingw1310_64\\bin"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "D:\\ProgramData\\Qt\\Tools\\Ninja"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "WrapVulkanHeaders"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "D:\\ProgramData\\Qt\\Tools\\mingw1310_64\\bin"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "D:\\ProgramData\\Qt\\Tools\\Ninja"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake:13 (find_package)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:283 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "Vulkan"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/Program Files/CMake/share/cmake-4.2/Modules/FindVulkan.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "c:\\Users\\devir\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "WrapVulkanHeaders"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\devir\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "c:\\Users\\devir\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake:13 (find_package)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:283 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "Vulkan"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/Program Files/CMake/share/cmake-4.2/Modules/FindVulkan.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "D:\\ProgramData\\Qt\\Tools\\mingw1310_64\\bin"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "D:\\ProgramData\\Qt\\Tools\\Ninja"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:34 (find_package)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:36 (_qt_internal_find_third_party_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
+      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:50 (_qt_internal_find_qt_dependencies)"
+      - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:17 (find_package)"
+    name: "WrapVulkanHeaders"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "dependency_provider::qt_maintenance_tool_dependency"
+        mode: "provider"
+        reason: "not_found"
+      -
+        path: "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake"
+        mode: "module"
+        reason: "not_found"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64"
+      ENV{PATH}:
+        - "D:\\ProgramData\\Qt\\Tools\\mingw1310_64\\bin"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.2.10-hotspot\\bin"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin"
+        - "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\libnvvp"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\w64devkit\\bin"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "D:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2025.1.1\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "D:\\Program Files\\ffmpeg-7.1.1-full_build\\bin"
+        - "D:\\ProgramData\\anaconda3"
+        - "D:\\ProgramData\\anaconda3\\Library\\bin"
+        - "D:\\ProgramData\\anaconda3\\Library\\mingw-w64\\bin"
+        - "D:\\ProgramData\\anaconda3\\Scripts"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\devir\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\devir\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "D:\\Program Files\\LLVM\\bin"
+        - "C:\\Users\\devir\\miniconda3"
+        - "C:\\Users\\devir\\miniconda3\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\usr\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Library\\bin"
+        - "C:\\Users\\devir\\miniconda3\\Scripts"
+        - "C:\\Users\\devir\\.dotnet\\tools"
+        - "D:\\ProgramData\\Qt\\Tools\\Ninja"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NwShip"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Program Files/CMake"
+        - "C:/Program Files (x86)/NwShip"
+      CMAKE_MODULE_PATH:
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "D:/ProgramData/Qt/6.11.1/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+...

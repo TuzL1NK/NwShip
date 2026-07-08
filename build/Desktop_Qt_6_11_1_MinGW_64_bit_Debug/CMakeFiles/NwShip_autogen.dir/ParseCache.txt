@@ -417,8 +417,6 @@ D:/ProgramData/QtProject/NwShip/mainwindow.h
  mdp:D:/ProgramData/QtProject/NwShip/core/route_calculator.h
  mdp:D:/ProgramData/QtProject/NwShip/data/data_loader.h
  mdp:D:/ProgramData/QtProject/NwShip/mainwindow.h
-D:/ProgramData/QtProject/NwShip/mainwindow.cpp
- uic:./ui_mainwindow.h
 D:/ProgramData/QtProject/NwShip/widgets/multiselectcombobox.h
  mmc:Q_OBJECT
  mdp:D:/ProgramData/Qt/6.11.1/mingw_64/include/QtCore/QList
@@ -828,5 +826,7 @@ D:/ProgramData/QtProject/NwShip/widgets/multiselectcombobox.h
  mdp:D:/ProgramData/QtProject/NwShip/data/data_loader.h
  mdp:D:/ProgramData/QtProject/NwShip/widgets/multiselectcombobox.h
 D:/ProgramData/QtProject/NwShip/main.cpp
+D:/ProgramData/QtProject/NwShip/mainwindow.cpp
+ uic:./ui_mainwindow.h
 D:/ProgramData/QtProject/NwShip/core/route_calculator.cpp
 D:/ProgramData/QtProject/NwShip/data/data_loader.cpp

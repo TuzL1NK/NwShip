@@ -326,6 +326,18 @@ QVector<SubmarineRank> parseSubmarineRanks(const QString &csvText)
 
 QString resolveDataFile(const QString &fileName)
 {
+    // Prefer assets/ folder inside application dir or project root, then default candidates
+    const QString appDir = QCoreApplication::applicationDirPath();
+    const QString assetsInApp = appDir + QDir::separator() + QStringLiteral("assets") + QDir::separator() + fileName;
+    if (QFileInfo::exists(assetsInApp)) {
+        return QFileInfo(assetsInApp).absoluteFilePath();
+    }
+
+    const QString assetsInRoot = QDir::currentPath() + QDir::separator() + QStringLiteral("assets") + QDir::separator() + fileName;
+    if (QFileInfo::exists(assetsInRoot)) {
+        return QFileInfo(assetsInRoot).absoluteFilePath();
+    }
+
     for (const QString &path : dataFileCandidates(fileName)) {
         if (QFileInfo::exists(path)) {
             return QFileInfo(path).absoluteFilePath();
@@ -359,31 +371,43 @@ ApplicationDataBundle loadApplicationData(const QString &packagePath)
     const QString partsPath = resolveDataFile(QStringLiteral("SubmarinePart.csv"));
     const QString ranksPath = resolveDataFile(QStringLiteral("SubmarineRank.csv"));
 
+    // Simple in-memory cache to avoid reparsing during the same run
+    static std::optional<ApplicationDataBundle> s_cache;
+    if (s_cache.has_value() && packagePath.isEmpty()) {
+        return *s_cache;
+    }
+
+    // If a data package exists (release build typically ships only data.bin), prefer it.
     QByteArray explorationCsv;
     QByteArray partsCsv;
     QByteArray ranksCsv;
-    if (readDataPackage(resolvedPackagePath, explorationCsv, partsCsv, ranksCsv)) {
-        bundle.explorationPoints = parseExplorationPoints(QString::fromUtf8(explorationCsv));
-        bundle.parts = parseSubmarineParts(QString::fromUtf8(partsCsv));
-        bundle.ranks = parseSubmarineRanks(QString::fromUtf8(ranksCsv));
-        return bundle;
-    }
-
-    const bool hasCsvData = QFileInfo::exists(explorationPath) && QFileInfo::exists(partsPath) && QFileInfo::exists(ranksPath);
-    if (hasCsvData && !resolvedPackagePath.isEmpty()) {
-        if (writeDataPackage(resolvedPackagePath, explorationPath, partsPath, ranksPath) &&
-            readDataPackage(resolvedPackagePath, explorationCsv, partsCsv, ranksCsv)) {
+    if (!resolvedPackagePath.isEmpty() && QFileInfo::exists(resolvedPackagePath)) {
+        if (readDataPackage(resolvedPackagePath, explorationCsv, partsCsv, ranksCsv)) {
             bundle.explorationPoints = parseExplorationPoints(QString::fromUtf8(explorationCsv));
             bundle.parts = parseSubmarineParts(QString::fromUtf8(partsCsv));
             bundle.ranks = parseSubmarineRanks(QString::fromUtf8(ranksCsv));
+            s_cache = bundle;
             return bundle;
+        } else {
+            qWarning("Failed to read data package: %s", qPrintable(resolvedPackagePath));
         }
     }
 
+    // Otherwise, try reading CSVs (development mode), prefer CSVs if they are present
+    const bool hasCsvData = QFileInfo::exists(explorationPath) && QFileInfo::exists(partsPath) && QFileInfo::exists(ranksPath);
+    if (hasCsvData) {
+        bundle.explorationPoints = loadExplorationPoints(explorationPath);
+        bundle.parts = loadSubmarineParts(partsPath);
+        bundle.ranks = loadSubmarineRanks(ranksPath);
+        s_cache = bundle;
+        return bundle;
+    }
+
+    // Final fallback: attempt to read CSVs individually (load* returns empty lists on failure)
     bundle.explorationPoints = loadExplorationPoints(explorationPath);
     bundle.parts = loadSubmarineParts(partsPath);
     bundle.ranks = loadSubmarineRanks(ranksPath);
-
+    s_cache = bundle;
     return bundle;
 }
 
