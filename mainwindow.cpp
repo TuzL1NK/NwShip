@@ -39,8 +39,11 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::onPartSelectionChanged);
     connect(ui->comboBox_bridge, &QComboBox::currentIndexChanged,
             this, &MainWindow::onPartSelectionChanged);
-    connect(ui->spinBox_level, &QSpinBox::valueChanged,
-            this, &MainWindow::onLevelChanged);
+    connect(ui->spinBox_level, &QSpinBox::editingFinished,
+            this, [this]() {
+                populatePartCombos();
+                updateConfigLabel();
+            });
 
     connect(ui->actionLight_Dark, &QAction::triggered, this, &MainWindow::toggleTheme);
     connect(ui->actionclose_2, &QAction::triggered, this, &QWidget::close);
@@ -167,12 +170,6 @@ void MainWindow::onPartSelectionChanged()
     updateConfigLabel();
 }
 
-void MainWindow::onLevelChanged(int /*level*/)
-{
-    populatePartCombos();
-    updateConfigLabel();
-}
-
 void MainWindow::resetFilters()
 {
     for (ExplorationPoint &point : m_explorationPoints) {
@@ -259,6 +256,10 @@ void MainWindow::calculateRoutes()
     options.maxResults = 200;
 
     m_lastRoutes = findBestRoutes(options);
+
+    const int sortModeValue = m_sortCombo ? m_sortCombo->currentData().toInt() : static_cast<int>(RouteSortMode::Efficiency);
+    sortRoutes(m_lastRoutes, static_cast<RouteSortMode>(sortModeValue));
+
     displayRoutes(m_lastRoutes);
 
     const QString configSummary = localizedText(

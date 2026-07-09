@@ -97,6 +97,8 @@ bool readExactBytes(QFile &file, QByteArray &data, quint32 size)
     return readBytes == size;
 }
 
+} // namespace
+
 bool writeDataPackage(const QString &packagePath,
                       const QString &explorationPath,
                       const QString &partsPath,
@@ -137,6 +139,8 @@ bool writeDataPackage(const QString &packagePath,
 
     return file.flush();
 }
+
+namespace {
 
 bool readDataPackage(const QString &packagePath,
                      QByteArray &explorationCsv,
@@ -326,7 +330,6 @@ QVector<SubmarineRank> parseSubmarineRanks(const QString &csvText)
 
 QString resolveDataFile(const QString &fileName)
 {
-    // Prefer assets/ folder inside application dir or project root, then default candidates
     const QString appDir = QCoreApplication::applicationDirPath();
     const QString assetsInApp = appDir + QDir::separator() + QStringLiteral("assets") + QDir::separator() + fileName;
     if (QFileInfo::exists(assetsInApp)) {
@@ -371,13 +374,11 @@ ApplicationDataBundle loadApplicationData(const QString &packagePath)
     const QString partsPath = resolveDataFile(QStringLiteral("SubmarinePart.csv"));
     const QString ranksPath = resolveDataFile(QStringLiteral("SubmarineRank.csv"));
 
-    // Simple in-memory cache to avoid reparsing during the same run
     static std::optional<ApplicationDataBundle> s_cache;
     if (s_cache.has_value() && packagePath.isEmpty()) {
         return *s_cache;
     }
 
-    // If a data package exists (release build typically ships only data.bin), prefer it.
     QByteArray explorationCsv;
     QByteArray partsCsv;
     QByteArray ranksCsv;
@@ -393,7 +394,6 @@ ApplicationDataBundle loadApplicationData(const QString &packagePath)
         }
     }
 
-    // Otherwise, try reading CSVs (development mode), prefer CSVs if they are present
     const bool hasCsvData = QFileInfo::exists(explorationPath) && QFileInfo::exists(partsPath) && QFileInfo::exists(ranksPath);
     if (hasCsvData) {
         bundle.explorationPoints = loadExplorationPoints(explorationPath);
@@ -403,7 +403,6 @@ ApplicationDataBundle loadApplicationData(const QString &packagePath)
         return bundle;
     }
 
-    // Final fallback: attempt to read CSVs individually (load* returns empty lists on failure)
     bundle.explorationPoints = loadExplorationPoints(explorationPath);
     bundle.parts = loadSubmarineParts(partsPath);
     bundle.ranks = loadSubmarineRanks(ranksPath);

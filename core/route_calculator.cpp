@@ -100,14 +100,12 @@ std::optional<RoutePlan> evaluateRoute(const ExplorationPoint &home,
         return std::nullopt;
     }
 
-    // Ensure all points in the route are on the same map
     const int firstMapId = route.first()->mapId;
     for (const ExplorationPoint *p : route) {
         if (p->mapId != firstMapId) {
             return std::nullopt;
         }
     }
-    
 
     const double travelDistance = routeTravelDistance(home, route);
     const int rangeRequired = routeRangeRequired(home, route);
@@ -284,7 +282,6 @@ QVector<RoutePlan> findBestRoutes(const RouteSearchOptions &options)
         return results;
     }
 
-    // Group candidates by mapId to avoid cross-map combinations and reduce combinatorial explosion.
     QMap<int, QVector<ExplorationPoint>> groups;
     for (const ExplorationPoint &p : options.candidates) {
         groups[p.mapId].append(p);

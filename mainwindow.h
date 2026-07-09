@@ -27,7 +27,6 @@ public:
 private slots:
     void onSelectionChanged();
     void onPartSelectionChanged();
-    void onLevelChanged(int level);
     void toggleTheme();
     void switchToChinese();
     void switchToEnglish();

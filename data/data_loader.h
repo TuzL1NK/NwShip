@@ -76,6 +76,11 @@ struct ApplicationDataBundle
 QString resolveDataFile(const QString &fileName);
 QString mapDisplayName(int mapId);
 
+bool writeDataPackage(const QString &packagePath,
+                      const QString &explorationPath,
+                      const QString &partsPath,
+                      const QString &ranksPath);
+
 ApplicationDataBundle loadApplicationData(const QString &packagePath = QString());
 QList<ExplorationPoint> loadExplorationPoints(const QString &path);
 QList<SubmarinePart> loadSubmarineParts(const QString &path);

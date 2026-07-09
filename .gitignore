@@ -44,6 +44,6 @@ qrc_*.cpp
 Thumbs.db
 desktop.ini
 
-# Assets shipped with releases (keep tracked in repo if you want; ignore local generated assets)
-/assets/*.bin
-/assets/*.csv
+# data files
+/tools/
+*.csv
