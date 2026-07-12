@@ -290,6 +290,7 @@ QVector<RoutePlan> findBestRoutes(const RouteSearchOptions &options)
     QSet<QString> seen;
 
     for (auto it = groups.constBegin(); it != groups.constEnd(); ++it) {
+        const int mapId = it.key();
         const QVector<ExplorationPoint> groupCandidates = it.value();
         if (groupCandidates.isEmpty()) {
             continue;
@@ -297,6 +298,7 @@ QVector<RoutePlan> findBestRoutes(const RouteSearchOptions &options)
 
         RouteSearchOptions localOptions = options;
         localOptions.candidates = groupCandidates;
+        localOptions.homePort = options.mapHomePorts.value(mapId, options.homePort);
 
         const int maxPoints = qMin(localOptions.maxPoints, localOptions.candidates.size());
         for (int count = 1; count <= maxPoints; ++count) {

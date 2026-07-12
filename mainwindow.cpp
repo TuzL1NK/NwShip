@@ -251,6 +251,11 @@ void MainWindow::calculateRoutes()
     options.level = ui->spinBox_level->value();
     options.stats = *stats;
     options.homePort = homePort();
+    for (const ExplorationPoint &point : m_explorationPoints) {
+        if (point.startingPoint) {
+            options.mapHomePorts.insert(point.mapId, point);
+        }
+    }
     options.candidates = candidates;
     options.maxPoints = 5;
     options.maxResults = 200;

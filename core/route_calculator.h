@@ -6,6 +6,7 @@
 #include <QString>
 #include <QVector>
 #include <QStringList>
+#include <QMap>
 
 enum class RouteSortMode
 {
@@ -36,6 +37,7 @@ struct RouteSearchOptions
     int level = 1;
     SubmarineStats stats;
     ExplorationPoint homePort;
+    QMap<int, ExplorationPoint> mapHomePorts;
     QVector<ExplorationPoint> candidates;
     int maxPoints = 5;
     int maxCandidatePool = 28;
