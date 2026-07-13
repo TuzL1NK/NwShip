@@ -33,7 +33,7 @@ TagWidget::TagWidget(const QString &text, const QColor &accent, QWidget *parent)
     layout->setSpacing(2);
 
     auto *label = new QLabel(text, this);
-    auto *closeBtn = new QPushButton(QStringLiteral("\xC3\x97"), this);
+    auto *closeBtn = new QPushButton(QStringLiteral("×"), this);
     closeBtn->setObjectName(QStringLiteral("tagRemoveBtn"));
     closeBtn->setCursor(Qt::PointingHandCursor);
     closeBtn->setFixedSize(18, 18);

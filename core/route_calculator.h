@@ -15,6 +15,12 @@ enum class RouteSortMode
     ShortestTime,
 };
 
+enum class RouteWhitelistMode
+{
+    Preferred,
+    Strict,
+};
+
 struct RouteLeg
 {
     int pointId = 0;
@@ -30,6 +36,8 @@ struct RoutePlan
     double remainingRange = 0;
     double totalTimeMin = 0;
     double efficiency = 0;
+    int whitelistMatchCount = 0;
+    QStringList whitelistMatches;
 };
 
 struct RouteSearchOptions
@@ -39,6 +47,8 @@ struct RouteSearchOptions
     ExplorationPoint homePort;
     QMap<int, ExplorationPoint> mapHomePorts;
     QVector<ExplorationPoint> candidates;
+    QStringList whitelist;
+    RouteWhitelistMode whitelistMode = RouteWhitelistMode::Preferred;
     int maxPoints = 5;
     int maxCandidatePool = 28;
     int maxResults = 200;
@@ -48,7 +58,8 @@ QVector<ExplorationPoint> buildRouteCandidates(const QList<ExplorationPoint> &al
                                                int level,
                                                const QStringList &whitelist,
                                                const QStringList &blacklist,
-                                               int maxPool);
+                                               int maxPool,
+                                               RouteWhitelistMode mode);
 
 QVector<RoutePlan> findBestRoutes(const RouteSearchOptions &options);
 

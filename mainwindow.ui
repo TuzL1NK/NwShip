@@ -166,43 +166,62 @@
           <property name="title">
            <string>航点筛选</string>
           </property>
-          <layout class="QHBoxLayout" name="filterLayout">
-           <property name="spacing">
+          <layout class="QGridLayout" name="filterLayout">
+           <property name="horizontalSpacing">
             <number>16</number>
            </property>
-           <item>
-            <layout class="QVBoxLayout" name="whitelistLayout">
-             <property name="spacing">
-              <number>6</number>
+           <property name="verticalSpacing">
+            <number>8</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_whitelist_title">
+             <property name="text">
+              <string>白名单（优先探索）</string>
              </property>
-             <item>
-              <widget class="QLabel" name="label_whitelist_title">
-               <property name="text">
-                <string>白名单（优先探索）</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="MultiSelectComboBox" name="widget_whitelist" native="true"/>
-             </item>
-            </layout>
+            </widget>
            </item>
-           <item>
-            <layout class="QVBoxLayout" name="blacklistLayout">
-             <property name="spacing">
-              <number>6</number>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_blacklist_title">
+             <property name="text">
+              <string>黑名单（排除）</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QComboBox" name="comboBox_whitelistMode">
+             <property name="toolTip">
+              <string>白名单策略：优先模式会保留所有结果并把命中路线排前面；严格模式只在选中白名单航点内搜索。</string>
              </property>
              <item>
-              <widget class="QLabel" name="label_blacklist_title">
-               <property name="text">
-                <string>黑名单（排除）</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string>优先模式</string>
+              </property>
              </item>
              <item>
-              <widget class="MultiSelectComboBox" name="widget_blacklist" native="true"/>
+              <property name="text">
+               <string>严格模式</string>
+              </property>
              </item>
-            </layout>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <spacer name="filterRightSpacer">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="0">
+            <widget class="MultiSelectComboBox" name="widget_whitelist" native="true"/>
+           </item>
+           <item row="2" column="1">
+            <widget class="MultiSelectComboBox" name="widget_blacklist" native="true"/>
            </item>
           </layout>
          </widget>

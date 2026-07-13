@@ -135,6 +135,57 @@ bool containsName(const QStringList &names, const QString &name)
     return names.contains(name, Qt::CaseInsensitive);
 }
 
+QStringList collectWhitelistMatches(const QVector<RouteLeg> &legs, const QStringList &whitelist)
+{
+    if (whitelist.isEmpty()) {
+        return {};
+    }
+
+    QSet<QString> whitelistNames;
+    whitelistNames.reserve(whitelist.size());
+    for (const QString &name : whitelist) {
+        whitelistNames.insert(name.toLower());
+    }
+
+    QStringList matches;
+    for (const RouteLeg &leg : legs) {
+        if (whitelistNames.contains(leg.name.toLower())
+            && !matches.contains(leg.name, Qt::CaseInsensitive)) {
+            matches.append(leg.name);
+        }
+    }
+    return matches;
+}
+
+void applyWhitelistPreference(QVector<RoutePlan> &routes,
+                               const QStringList &whitelist,
+                               RouteWhitelistMode mode)
+{
+    if (whitelist.isEmpty()) {
+        return;
+    }
+
+    QVector<RoutePlan> filtered;
+    filtered.reserve(routes.size());
+    for (RoutePlan &route : routes) {
+        route.whitelistMatches = collectWhitelistMatches(route.legs, whitelist);
+        route.whitelistMatchCount = route.whitelistMatches.size();
+        if (mode == RouteWhitelistMode::Strict) {
+            if (route.whitelistMatchCount > 0) {
+                filtered.append(route);
+            }
+        } else {
+            filtered.append(route);
+        }
+    }
+
+    if (mode == RouteWhitelistMode::Strict && !filtered.isEmpty()) {
+        routes = filtered;
+    } else if (mode == RouteWhitelistMode::Preferred) {
+        routes = filtered;
+    }
+}
+
 QString routeKey(const RoutePlan &plan)
 {
     QStringList ids;
@@ -217,8 +268,11 @@ QVector<ExplorationPoint> buildRouteCandidates(const QList<ExplorationPoint> &al
                                                int level,
                                                const QStringList &whitelist,
                                                const QStringList &blacklist,
-                                               int maxPool)
+                                               int maxPool,
+                                               RouteWhitelistMode mode)
 {
+    const bool strictWhitelist = mode == RouteWhitelistMode::Strict && !whitelist.isEmpty();
+
     QVector<ExplorationPoint> filtered;
     filtered.reserve(allPoints.size());
 
@@ -232,13 +286,13 @@ QVector<ExplorationPoint> buildRouteCandidates(const QList<ExplorationPoint> &al
         if (containsName(blacklist, point.name)) {
             continue;
         }
-        if (!whitelist.isEmpty() && !containsName(whitelist, point.name)) {
+        if (strictWhitelist && !containsName(whitelist, point.name)) {
             continue;
         }
         filtered.append(point);
     }
 
-    if (filtered.size() <= maxPool) {
+    if (strictWhitelist || filtered.size() <= maxPool) {
         return filtered;
     }
 
@@ -308,8 +362,10 @@ QVector<RoutePlan> findBestRoutes(const RouteSearchOptions &options)
         }
     }
 
+    applyWhitelistPreference(results, options.whitelist, options.whitelistMode);
+    sortRoutes(results, RouteSortMode::Efficiency);
+
     if (results.size() > options.maxResults) {
-        sortRoutes(results, RouteSortMode::Efficiency);
         results.resize(options.maxResults);
     }
 
@@ -319,6 +375,10 @@ QVector<RoutePlan> findBestRoutes(const RouteSearchOptions &options)
 void sortRoutes(QVector<RoutePlan> &routes, RouteSortMode mode)
 {
     auto cmp = [mode](const RoutePlan &a, const RoutePlan &b) {
+        if (a.whitelistMatchCount != b.whitelistMatchCount) {
+            return a.whitelistMatchCount > b.whitelistMatchCount;
+        }
+
         switch (mode) {
         case RouteSortMode::TotalExp:
             if (!qFuzzyCompare(a.totalExp, b.totalExp)) {

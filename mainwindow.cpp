@@ -10,6 +10,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPalette>
+#include <QSizePolicy>
 #include <QVBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -17,6 +18,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    if (ui->filterLayout) {
+        ui->filterLayout->setContentsMargins(0, 0, 0, 0);
+        ui->filterLayout->setColumnStretch(0, 1);
+        ui->filterLayout->setColumnStretch(1, 1);
+    }
+    if (ui->comboBox_whitelistMode) {
+        ui->comboBox_whitelistMode->setMinimumWidth(150);
+        ui->comboBox_whitelistMode->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    }
+    if (ui->widget_whitelist) {
+        ui->widget_whitelist->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    }
+    if (ui->widget_blacklist) {
+        ui->widget_blacklist->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    }
     setWindowIcon(QIcon(QStringLiteral(":/icons/submarine.ico")));
     setWindowTitle(localizedText(QStringLiteral("NwShip — 潜艇探索助手"), QStringLiteral("NwShip — Submarine Exploration Assistant")));
 
@@ -240,12 +256,17 @@ void MainWindow::calculateRoutes()
     const QStringList whitelist = ui->widget_whitelist->getSelectedItems();
     const QStringList blacklist = ui->widget_blacklist->getSelectedItems();
 
+    const RouteWhitelistMode whitelistMode = static_cast<RouteWhitelistMode>(
+        ui->comboBox_whitelistMode ? ui->comboBox_whitelistMode->currentData().toInt()
+                                  : static_cast<int>(RouteWhitelistMode::Preferred));
+
     const QVector<ExplorationPoint> candidates = buildRouteCandidates(
         m_explorationPoints,
         ui->spinBox_level->value(),
         whitelist,
         blacklist,
-        28);
+        28,
+        whitelistMode);
 
     RouteSearchOptions options;
     options.level = ui->spinBox_level->value();
@@ -257,6 +278,9 @@ void MainWindow::calculateRoutes()
         }
     }
     options.candidates = candidates;
+    options.whitelist = whitelist;
+    const int whitelistModeIndex = ui->comboBox_whitelistMode ? ui->comboBox_whitelistMode->currentData().toInt() : static_cast<int>(RouteWhitelistMode::Preferred);
+    options.whitelistMode = static_cast<RouteWhitelistMode>(whitelistModeIndex);
     options.maxPoints = 5;
     options.maxResults = 200;
 
@@ -335,6 +359,17 @@ void MainWindow::displayRoutes(const QVector<RoutePlan> &routes)
             routeText += route.legs.at(i).name;
         }
 
+        const bool hasWhitelistMatch = route.whitelistMatchCount > 0;
+        const QString accentColor = hasWhitelistMatch
+                                         ? (m_darkTheme ? QStringLiteral("#34d399") : QStringLiteral("#16a34a"))
+                                         : (m_darkTheme ? QStringLiteral("#5a9cf5") : QStringLiteral("#3d8bfd"));
+        const QString cardBackground = hasWhitelistMatch
+                                          ? (m_darkTheme ? QStringLiteral("#1f2d24") : QStringLiteral("#f0fdf4"))
+                                          : (m_darkTheme ? QStringLiteral("#24262b") : QStringLiteral("#ffffff"));
+        const QString cardBorder = hasWhitelistMatch
+                                      ? accentColor
+                                      : (m_darkTheme ? QStringLiteral("#3b3f46") : QStringLiteral("#d6dbe4"));
+
         auto *card = new QFrame(m_resultsContent);
         card->setObjectName(QStringLiteral("routeCard"));
         card->setFrameShape(QFrame::StyledPanel);
@@ -349,15 +384,19 @@ void MainWindow::displayRoutes(const QVector<RoutePlan> &routes)
             "}"
             "QFrame#routeCard:hover { border-color: %3; }"
         )
-            .arg(m_darkTheme ? QStringLiteral("#24262b") : QStringLiteral("#ffffff"))
-            .arg(m_darkTheme ? QStringLiteral("#3b3f46") : QStringLiteral("#d6dbe4"))
-            .arg(m_darkTheme ? QStringLiteral("#5a9cf5") : QStringLiteral("#3d8bfd")));
+            .arg(cardBackground)
+            .arg(cardBorder)
+            .arg(accentColor));
 
         auto *cardLayout = new QVBoxLayout(card);
         cardLayout->setContentsMargins(12, 10, 12, 10);
         cardLayout->setSpacing(8);
 
-        auto *titleLabel = new QLabel(localizedText(QStringLiteral("路线 %1").arg(row + 1), QStringLiteral("Route %1").arg(row + 1)), card);
+        const QString titleText = localizedText(QStringLiteral("路线 %1").arg(row + 1), QStringLiteral("Route %1").arg(row + 1))
+                                      + (hasWhitelistMatch
+                                             ? localizedText(QStringLiteral(" · 白名单命中 %1").arg(route.whitelistMatchCount), QStringLiteral(" · Whitelist hit %1").arg(route.whitelistMatchCount))
+                                             : QString());
+        auto *titleLabel = new QLabel(titleText, card);
         titleLabel->setStyleSheet(QString("font-weight: bold; color: %1;")
                                       .arg(m_darkTheme ? QStringLiteral("#f8fafc") : QStringLiteral("#111827")));
 
@@ -366,6 +405,18 @@ void MainWindow::displayRoutes(const QVector<RoutePlan> &routes)
         routeLabel->setStyleSheet(QString("color: %1; line-height: 1.4;")
                                      .arg(m_darkTheme ? QStringLiteral("#e5e7eb") : QStringLiteral("#0f172a")));
         routeLabel->setToolTip(routeText);
+
+        QString whitelistHint = localizedText(QStringLiteral("未命中白名单"), QStringLiteral("No whitelist hit"));
+        if (hasWhitelistMatch) {
+            whitelistHint = localizedText(QStringLiteral("白名单点位：%1").arg(route.whitelistMatches.join(QStringLiteral(" / "))), QStringLiteral("Whitelist points: %1").arg(route.whitelistMatches.join(QStringLiteral(" / "))));
+        }
+
+        auto *whitelistLabel = new QLabel(whitelistHint, card);
+        whitelistLabel->setWordWrap(true);
+        whitelistLabel->setStyleSheet(QString("color: %1; font-size: 12px; font-weight: 600;")
+                                           .arg(hasWhitelistMatch
+                                                    ? (m_darkTheme ? QStringLiteral("#4ade80") : QStringLiteral("#15803d"))
+                                                    : (m_darkTheme ? QStringLiteral("#94a3b8") : QStringLiteral("#64748b"))));
 
         auto *metricsLayout = new QHBoxLayout();
         metricsLayout->setSpacing(8);
@@ -384,6 +435,7 @@ void MainWindow::displayRoutes(const QVector<RoutePlan> &routes)
 
         cardLayout->addWidget(titleLabel);
         cardLayout->addWidget(routeLabel);
+        cardLayout->addWidget(whitelistLabel);
         cardLayout->addLayout(metricsLayout);
         m_resultsLayout->addWidget(card);
     }
@@ -526,6 +578,18 @@ void MainWindow::refreshUiTexts()
     ui->widget_blacklist->setPlaceholderText(localizedText(QStringLiteral("选择黑名单航点…"), QStringLiteral("Select blacklisted waypoints…")));
     ui->widget_whitelist->setAccentColor(QColor(QStringLiteral("#2ea86a")));
     ui->widget_blacklist->setAccentColor(QColor(QStringLiteral("#c94c4c")));
+    if (ui->comboBox_whitelistMode) {
+        ui->comboBox_whitelistMode->setToolTip(localizedText(QStringLiteral("白名单策略：优先模式会保留所有结果并把命中路线排前面；严格模式只保留命中白名单的路线"), QStringLiteral("Whitelist strategy: Priority keeps all results and ranks matched routes first; Strict only keeps routes that hit the whitelist")));
+    }
+
+    if (ui->comboBox_whitelistMode) {
+        ui->comboBox_whitelistMode->blockSignals(true);
+        ui->comboBox_whitelistMode->clear();
+        ui->comboBox_whitelistMode->addItem(localizedText(QStringLiteral("优先模式"), QStringLiteral("Priority mode")), static_cast<int>(RouteWhitelistMode::Preferred));
+        ui->comboBox_whitelistMode->addItem(localizedText(QStringLiteral("严格模式"), QStringLiteral("Strict mode")), static_cast<int>(RouteWhitelistMode::Strict));
+        ui->comboBox_whitelistMode->setCurrentIndex(0);
+        ui->comboBox_whitelistMode->blockSignals(false);
+    }
 
     if (m_sortCombo) {
         m_sortCombo->blockSignals(true);
