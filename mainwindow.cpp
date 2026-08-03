@@ -4,10 +4,8 @@
 
 #include <QApplication>
 #include <QComboBox>
-#include <QFileInfo>
 #include <QIcon>
 #include <QFrame>
-#include <QHBoxLayout>
 #include <QLabel>
 #include <QPalette>
 #include <QSizePolicy>
@@ -46,6 +44,11 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::onSelectionChanged);
     connect(ui->widget_blacklist, &MultiSelectComboBox::selectionChanged,
             this, &MainWindow::onSelectionChanged);
+
+    connect(ui->widget_whitelist, &MultiSelectComboBox::selectionChanged,
+            this, [this]() { ui->widget_whitelist->saveSelection(QStringLiteral("whitelist")); });
+    connect(ui->widget_blacklist, &MultiSelectComboBox::selectionChanged,
+            this, [this]() { ui->widget_blacklist->saveSelection(QStringLiteral("blacklist")); });
 
     connect(ui->comboBox_hull, &QComboBox::currentIndexChanged,
             this, &MainWindow::onPartSelectionChanged);
@@ -118,6 +121,8 @@ void MainWindow::loadData()
     } else {
         ui->widget_whitelist->setExplorationPoints(m_explorationPoints);
         ui->widget_blacklist->setExplorationPoints(m_explorationPoints);
+        ui->widget_whitelist->restoreSelection(QStringLiteral("whitelist"));
+        ui->widget_blacklist->restoreSelection(QStringLiteral("blacklist"));
     }
 
     populatePartCombos();
@@ -195,6 +200,8 @@ void MainWindow::resetFilters()
     }
     ui->widget_whitelist->setExplorationPoints(m_explorationPoints);
     ui->widget_blacklist->setExplorationPoints(m_explorationPoints);
+    ui->widget_whitelist->saveSelection(QStringLiteral("whitelist"));
+    ui->widget_blacklist->saveSelection(QStringLiteral("blacklist"));
     updateConfigLabel();
 }
 
@@ -255,7 +262,6 @@ void MainWindow::calculateRoutes()
 
     const QStringList whitelist = ui->widget_whitelist->getSelectedItems();
     const QStringList blacklist = ui->widget_blacklist->getSelectedItems();
-
     const RouteWhitelistMode whitelistMode = static_cast<RouteWhitelistMode>(
         ui->comboBox_whitelistMode ? ui->comboBox_whitelistMode->currentData().toInt()
                                   : static_cast<int>(RouteWhitelistMode::Preferred));
@@ -279,8 +285,7 @@ void MainWindow::calculateRoutes()
     }
     options.candidates = candidates;
     options.whitelist = whitelist;
-    const int whitelistModeIndex = ui->comboBox_whitelistMode ? ui->comboBox_whitelistMode->currentData().toInt() : static_cast<int>(RouteWhitelistMode::Preferred);
-    options.whitelistMode = static_cast<RouteWhitelistMode>(whitelistModeIndex);
+    options.whitelistMode = whitelistMode;
     options.maxPoints = 5;
     options.maxResults = 200;
 
@@ -504,9 +509,11 @@ void MainWindow::applyLanguage(AppLanguage language)
     populatePartCombos();
     if (ui->widget_whitelist) {
         ui->widget_whitelist->setExplorationPoints(m_explorationPoints);
+        ui->widget_whitelist->restoreSelection(QStringLiteral("whitelist"));
     }
     if (ui->widget_blacklist) {
         ui->widget_blacklist->setExplorationPoints(m_explorationPoints);
+        ui->widget_blacklist->restoreSelection(QStringLiteral("blacklist"));
     }
     updateConfigLabel();
     if (!m_lastRoutes.isEmpty()) {

@@ -11,6 +11,12 @@
 #include <QResizeEvent>
 #include <QBrush>
 #include <QFont>
+#include <QCoreApplication>
+#include <QDir>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QMenu>
+#include <QSettings>
 
 TagWidget::TagWidget(const QString &text, const QColor &accent, QWidget *parent)
     : QFrame(parent)
@@ -84,14 +90,35 @@ MultiSelectComboBox::MultiSelectComboBox(QWidget *parent)
     m_comboBox->setModel(new QStandardItemModel(m_comboBox));
     m_comboBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
+    m_areaButton = new QPushButton(this);
+    m_areaButton->setText(QStringLiteral("海域"));
+    m_areaButton->setFixedWidth(48);
+    m_areaButton->setCursor(Qt::PointingHandCursor);
+    m_areaButton->setToolTip(QStringLiteral("按海域批量选择"));
+
+    m_clearButton = new QPushButton(this);
+    m_clearButton->setText(QStringLiteral("清除"));
+    m_clearButton->setFixedWidth(48);
+    m_clearButton->setCursor(Qt::PointingHandCursor);
+    m_clearButton->setToolTip(QStringLiteral("一键清除所有选择"));
+
+    auto *bottomRow = new QHBoxLayout();
+    bottomRow->setContentsMargins(0, 0, 0, 0);
+    bottomRow->setSpacing(6);
+    bottomRow->addWidget(m_comboBox, 1);
+    bottomRow->addWidget(m_areaButton, 0);
+    bottomRow->addWidget(m_clearButton, 0);
+
     m_comboBox->view()->viewport()->installEventFilter(this);
     qApp->installEventFilter(this);
 
     m_mainLayout->addWidget(m_scrollArea, 1);
-    m_mainLayout->addWidget(m_comboBox);
+    m_mainLayout->addLayout(bottomRow);
 
     connect(m_comboBox->model(), &QAbstractItemModel::dataChanged,
             this, &MultiSelectComboBox::onSelectionChanged);
+    connect(m_areaButton, &QPushButton::clicked, this, &MultiSelectComboBox::refreshAreaMenu);
+    connect(m_clearButton, &QPushButton::clicked, this, &MultiSelectComboBox::clearAll);
 
     styleComboBox();
 }
@@ -154,6 +181,22 @@ void MultiSelectComboBox::applyTheme(bool dark)
         "}"
     ).arg(bg).arg(text).arg(border).arg(accent).arg(muted));
 
+    m_areaButton->setStyleSheet(QString(
+        "QPushButton {"
+        "  background: %1; color: %2; border: 1px solid %3;"
+        "  border-radius: 6px; padding: 4px 8px; font-size: 12px;"
+        "}"
+        "QPushButton:hover { border-color: %4; background: %5; }"
+    ).arg(bg).arg(text).arg(border).arg(accent).arg(dark ? QStringLiteral("#3a3d42") : QStringLiteral("#f1f5f9")));
+
+    m_clearButton->setStyleSheet(QString(
+        "QPushButton {"
+        "  background: %1; color: %2; border: 1px solid %3;"
+        "  border-radius: 6px; padding: 4px 8px; font-size: 12px;"
+        "}"
+        "QPushButton:hover { color: #e53935; border-color: #e53935; background: %4; }"
+    ).arg(bg).arg(text).arg(border).arg(dark ? QStringLiteral("#3a1f1f") : QStringLiteral("#fef2f2")));
+
     if (!m_cachedSelection.isEmpty()) {
         reflowTags();
     }
@@ -192,9 +235,29 @@ bool MultiSelectComboBox::eventFilter(QObject *watched, QEvent *event)
             auto *model = qobject_cast<QStandardItemModel *>(m_comboBox->model());
             if (QStandardItem *item = model->itemFromIndex(index)) {
                 if (item->isCheckable() && item->isEnabled()) {
-                    item->setCheckState(item->checkState() == Qt::Checked
-                                            ? Qt::Unchecked
-                                            : Qt::Checked);
+                    const bool shiftHeld = mouseEvent->modifiers() & Qt::ShiftModifier;
+                    if (shiftHeld && m_lastClickedIndex.isValid()) {
+                        // Shift range selection: check all items between last and current
+                        const int from = qMin(m_lastClickedIndex.row(), index.row());
+                        const int to = qMax(m_lastClickedIndex.row(), index.row());
+                        model->blockSignals(true);
+                        for (int i = from; i <= to; ++i) {
+                            QStandardItem *rangeItem = model->item(i);
+                            if (rangeItem && rangeItem->isCheckable()) {
+                                rangeItem->setCheckState(Qt::Checked);
+                            }
+                        }
+                        model->blockSignals(false);
+                        // Trigger onSelectionChanged to refresh tags and save
+                        m_cachedSelection = getSelectedItems();
+                        reflowTags();
+                        emit selectionChanged(m_cachedSelection);
+                    } else {
+                        item->setCheckState(item->checkState() == Qt::Checked
+                                                ? Qt::Unchecked
+                                                : Qt::Checked);
+                        m_lastClickedIndex = index;
+                    }
                     return true;
                 }
             }
@@ -245,6 +308,7 @@ void MultiSelectComboBox::setExplorationPoints(const QList<ExplorationPoint> &po
     }
 
     model->clear();
+    m_mapIds.clear();
     model->blockSignals(true);
 
     int currentMap = -1;
@@ -255,11 +319,15 @@ void MultiSelectComboBox::setExplorationPoints(const QList<ExplorationPoint> &po
         if (point.mapId != currentMap) {
             appendMapSeparator(point.mapId);
             currentMap = point.mapId;
+            if (!m_mapIds.contains(point.mapId)) {
+                m_mapIds.append(point.mapId);
+            }
         }
 
         auto *item = new QStandardItem(point.name);
         item->setCheckable(true);
         item->setCheckState(Qt::Unchecked);
+        item->setData(point.mapId, Qt::UserRole);
         model->appendRow(item);
     }
 
@@ -352,4 +420,126 @@ void MultiSelectComboBox::onTagRemoveRequested(const QString &text)
             break;
         }
     }
+}
+
+void MultiSelectComboBox::selectByMapId(int mapId)
+{
+    auto *model = qobject_cast<QStandardItemModel *>(m_comboBox->model());
+    if (!model) {
+        return;
+    }
+
+    model->blockSignals(true);
+    for (int i = 0; i < model->rowCount(); ++i) {
+        QStandardItem *item = model->item(i);
+        if (!item || !item->isCheckable()) {
+            continue;
+        }
+        if (item->data(Qt::UserRole).toInt() == mapId) {
+            item->setCheckState(Qt::Checked);
+        }
+    }
+    model->blockSignals(false);
+
+    m_lastClickedIndex = QPersistentModelIndex();
+    m_cachedSelection = getSelectedItems();
+    reflowTags();
+    emit selectionChanged(m_cachedSelection);
+}
+
+void MultiSelectComboBox::clearAll()
+{
+    auto *model = qobject_cast<QStandardItemModel *>(m_comboBox->model());
+    if (!model) {
+        return;
+    }
+
+    model->blockSignals(true);
+    for (int i = 0; i < model->rowCount(); ++i) {
+        QStandardItem *item = model->item(i);
+        if (item && item->isCheckable()) {
+            item->setCheckState(Qt::Unchecked);
+        }
+    }
+    model->blockSignals(false);
+
+    m_lastClickedIndex = QPersistentModelIndex();
+    m_cachedSelection.clear();
+    reflowTags();
+    emit selectionChanged(m_cachedSelection);
+}
+
+void MultiSelectComboBox::refreshAreaMenu()
+{
+    QMenu menu;
+    for (int mapId : m_mapIds) {
+        QAction *action = menu.addAction(mapDisplayName(mapId));
+        action->setData(mapId);
+    }
+
+    QAction *chosen = menu.exec(m_areaButton->mapToGlobal(QPoint(0, m_areaButton->height())));
+    if (chosen) {
+        selectByMapId(chosen->data().toInt());
+    }
+}
+
+static QString settingsFilePath()
+{
+    return QCoreApplication::applicationDirPath() + QStringLiteral("/NwShip.ini");
+}
+
+void MultiSelectComboBox::saveSelection(const QString &key) const
+{
+    const QStringList selected = getSelectedItems();
+    const QJsonArray arr = QJsonArray::fromStringList(selected);
+    const QByteArray json = QJsonDocument(arr).toJson(QJsonDocument::Compact);
+
+    QSettings settings(settingsFilePath(), QSettings::IniFormat);
+    settings.setValue(key, QString::fromUtf8(json));
+}
+
+void MultiSelectComboBox::restoreSelection(const QString &key)
+{
+    QSettings settings(settingsFilePath(), QSettings::IniFormat);
+    const QString raw = settings.value(key).toString();
+    if (raw.isEmpty()) {
+        return;
+    }
+
+    const QJsonDocument doc = QJsonDocument::fromJson(raw.toUtf8());
+    if (!doc.isArray()) {
+        return;
+    }
+
+    QStringList names;
+    const QJsonArray arr = doc.array();
+    for (const QJsonValue &val : arr) {
+        names.append(val.toString());
+    }
+    if (names.isEmpty()) {
+        return;
+    }
+
+    auto *model = qobject_cast<QStandardItemModel *>(m_comboBox->model());
+    if (!model) {
+        return;
+    }
+
+    model->blockSignals(true);
+
+    // Uncheck all first, then check only those in the saved list
+    for (int i = 0; i < model->rowCount(); ++i) {
+        QStandardItem *item = model->item(i);
+        if (!item || !item->isCheckable()) {
+            continue;
+        }
+        item->setCheckState(names.contains(item->text()) ? Qt::Checked : Qt::Unchecked);
+    }
+
+    model->blockSignals(false);
+
+    m_lastClickedIndex = QPersistentModelIndex();
+    m_cachedSelection = getSelectedItems();
+    reflowTags();
+    emit selectionChanged(m_cachedSelection);
 }

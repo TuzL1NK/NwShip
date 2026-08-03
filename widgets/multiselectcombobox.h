@@ -7,6 +7,9 @@
 #include <QScrollArea>
 #include <QColor>
 #include <QVBoxLayout>
+#include <QPushButton>
+#include <QList>
+#include <QPersistentModelIndex>
 
 #include "data/data_loader.h"
 
@@ -43,6 +46,11 @@ public:
     void setAccentColor(const QColor &color);
     void applyTheme(bool dark);
 
+    void saveSelection(const QString &key) const;
+    void restoreSelection(const QString &key);
+    void selectByMapId(int mapId);
+    void clearAll();
+
 signals:
     void selectionChanged(const QStringList &selected);
 
@@ -58,13 +66,18 @@ private:
     void reflowTags();
     void styleComboBox();
     void appendMapSeparator(int mapId);
+    void refreshAreaMenu();
 
     QVBoxLayout *m_mainLayout;
     QWidget *m_tagContainer;
     CustomMultiComboBox *m_comboBox;
+    QPushButton *m_areaButton;
+    QPushButton *m_clearButton;
     QScrollArea *m_scrollArea;
     QColor m_accentColor;
     QStringList m_cachedSelection;
+    QList<int> m_mapIds;
+    QPersistentModelIndex m_lastClickedIndex;
     bool m_darkTheme = true;
 };
 
