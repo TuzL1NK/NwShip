@@ -353,8 +353,10 @@ QStringList MultiSelectComboBox::getSelectedItems() const
 
 void MultiSelectComboBox::reflowTags()
 {
-    const QList<QWidget *> children = m_tagContainer->findChildren<QWidget *>();
+    const QList<QWidget *> children = m_tagContainer->findChildren<QWidget *>(
+        QString(), Qt::FindDirectChildrenOnly);
     for (QWidget *child : children) {
+        child->setParent(nullptr);
         child->deleteLater();
     }
 

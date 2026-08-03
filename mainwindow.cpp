@@ -341,7 +341,9 @@ void MainWindow::displayRoutes(const QVector<RoutePlan> &routes)
 
     while (QLayoutItem *item = m_resultsLayout->takeAt(0)) {
         if (QWidget *widget = item->widget()) {
-            widget->deleteLater();
+            if (widget != m_resultsEmptyLabel) {
+                widget->deleteLater();
+            }
         }
         delete item;
     }
