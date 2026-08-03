@@ -248,6 +248,7 @@ bool MultiSelectComboBox::eventFilter(QObject *watched, QEvent *event)
                             }
                         }
                         model->blockSignals(false);
+                        m_comboBox->view()->viewport()->update();
                         // Trigger onSelectionChanged to refresh tags and save
                         m_cachedSelection = getSelectedItems();
                         reflowTags();
