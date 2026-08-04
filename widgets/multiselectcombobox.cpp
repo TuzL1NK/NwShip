@@ -152,6 +152,8 @@ void MultiSelectComboBox::applyTheme(bool dark)
     const QString text = dark ? QStringLiteral("#e8e8e8") : QStringLiteral("#222222");
     const QString muted = dark ? QStringLiteral("#9aa4b2") : QStringLiteral("#64748b");
     const QString accent = dark ? QStringLiteral("#3d8bfd") : QStringLiteral("#2563eb");
+    const QString hoverBg = dark ? QStringLiteral("#3a3d42") : QStringLiteral("#f1f5f9");
+    const QString checkboxCheck = dark ? QStringLiteral("#3d8bfd") : QStringLiteral("#2563eb");
 
     m_scrollArea->setStyleSheet(QString(
         "QScrollArea { background: %1; border: 1px solid %2; border-radius: 6px; }"
@@ -177,9 +179,39 @@ void MultiSelectComboBox::applyTheme(bool dark)
         "}"
         "QComboBox QAbstractItemView {"
         "  background: %1; color: %2; border: 1px solid %3;"
-        "  selection-background-color: %4; outline: none; padding: 4px;"
+        "  border-radius: 8px; outline: none; padding: 6px;"
         "}"
-    ).arg(bg).arg(text).arg(border).arg(accent).arg(muted));
+        "QComboBox QAbstractItemView::item {"
+        "  padding: 7px 10px; border-radius: 6px;"
+        "}"
+        "QComboBox QAbstractItemView::item:hover {"
+        "  background: %6;"
+        "}"
+        "QComboBox QAbstractItemView::item:selected {"
+        "  background: %6; color: %2;"
+        "}"
+        "QComboBox QAbstractItemView::item:disabled {"
+        "  background: transparent; color: %5;"
+        "}"
+        "QComboBox QAbstractItemView::indicator {"
+        "  width: 16px; height: 16px; margin-right: 6px;"
+        "}"
+        "QComboBox QAbstractItemView::indicator:unchecked {"
+        "  border: 1px solid %3; background: %1; border-radius: 4px;"
+        "}"
+        "QComboBox QAbstractItemView::indicator:checked {"
+        "  border: 1px solid %7; background: %7; border-radius: 4px;"
+        "  image: none;"
+        "}"
+        "QComboBox QAbstractItemView QScrollBar:vertical {"
+        "  width: 8px; background: transparent; margin: 2px;"
+        "}"
+        "QComboBox QAbstractItemView QScrollBar::handle:vertical {"
+        "  background: %3; border-radius: 4px; min-height: 24px;"
+        "}"
+        "QComboBox QAbstractItemView QScrollBar::handle:vertical:hover { background: %8; }"
+        "QComboBox QAbstractItemView QScrollBar::add-line:vertical, QComboBox QAbstractItemView QScrollBar::sub-line:vertical { height: 0; }"
+    ).arg(bg).arg(text).arg(border).arg(accent).arg(muted).arg(hoverBg).arg(checkboxCheck).arg(dark ? QStringLiteral("#7a7d81") : QStringLiteral("#94a3b8")));
 
     m_areaButton->setStyleSheet(QString(
         "QPushButton {"
@@ -202,6 +234,18 @@ void MultiSelectComboBox::applyTheme(bool dark)
     }
 }
 
+void MultiSelectComboBox::setLanguage(bool chinese)
+{
+    m_chinese = chinese;
+    m_areaButton->setText(chinese ? QStringLiteral("海域") : QStringLiteral("Area"));
+    m_areaButton->setToolTip(chinese ? QStringLiteral("按海域批量选择") : QStringLiteral("Select by sea area"));
+    m_clearButton->setText(chinese ? QStringLiteral("清除") : QStringLiteral("Clear"));
+    m_clearButton->setToolTip(chinese ? QStringLiteral("一键清除所有选择") : QStringLiteral("Clear all selections"));
+    if (!m_cachedSelection.isEmpty()) {
+        reflowTags();
+    }
+}
+
 void MultiSelectComboBox::appendMapSeparator(int mapId)
 {
     auto *model = qobject_cast<QStandardItemModel *>(m_comboBox->model());
@@ -215,8 +259,8 @@ void MultiSelectComboBox::appendMapSeparator(int mapId)
     separator->setEnabled(false);
     separator->setCheckable(false);
     separator->setFlags(Qt::ItemIsEnabled);
-    separator->setBackground(QBrush(QColor(QStringLiteral("#1e2023"))));
-    separator->setForeground(QBrush(QColor(QStringLiteral("#9ecbff"))));
+    separator->setBackground(QBrush(QColor(m_darkTheme ? QStringLiteral("#1e2023") : QStringLiteral("#eef1f5"))));
+    separator->setForeground(QBrush(QColor(m_darkTheme ? QStringLiteral("#9ecbff") : QStringLiteral("#2563eb"))));
 
     QFont font = separator->font();
     font.setBold(true);
@@ -392,6 +436,9 @@ void MultiSelectComboBox::reflowTags()
         tag->setGeometry(currentX, currentY, tagWidth, tagHeight);
         currentX += tagWidth + hSpacing;
 
+        if (auto *btn = tag->findChild<QPushButton *>(QStringLiteral("tagRemoveBtn"))) {
+            btn->setToolTip(m_chinese ? QStringLiteral("移除") : QStringLiteral("Remove"));
+        }
         connect(tag, &TagWidget::removeRequested,
                 this, &MultiSelectComboBox::onTagRemoveRequested);
     }
@@ -475,6 +522,14 @@ void MultiSelectComboBox::clearAll()
 void MultiSelectComboBox::refreshAreaMenu()
 {
     QMenu menu;
+    const QString bg = m_darkTheme ? QStringLiteral("#25262a") : QStringLiteral("#ffffff");
+    const QString text = m_darkTheme ? QStringLiteral("#e8e8e8") : QStringLiteral("#222222");
+    const QString accent = m_darkTheme ? QStringLiteral("#3d8bfd") : QStringLiteral("#2563eb");
+    menu.setStyleSheet(QString(
+        "QMenu { background: %1; color: %2; border: 1px solid %3; padding: 4px; }"
+        "QMenu::item { padding: 6px 24px; border-radius: 4px; }"
+        "QMenu::item:selected { background: %4; color: #ffffff; }"
+    ).arg(bg).arg(text).arg(m_darkTheme ? QStringLiteral("#45484c") : QStringLiteral("#d0d4da")).arg(accent));
     for (int mapId : m_mapIds) {
         QAction *action = menu.addAction(mapDisplayName(mapId));
         action->setData(mapId);

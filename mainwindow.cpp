@@ -4,10 +4,12 @@
 
 #include <QApplication>
 #include <QComboBox>
+#include <QCoreApplication>
 #include <QIcon>
 #include <QFrame>
 #include <QLabel>
 #include <QPalette>
+#include <QSettings>
 #include <QSizePolicy>
 #include <QVBoxLayout>
 
@@ -33,6 +35,14 @@ MainWindow::MainWindow(QWidget *parent)
     }
     setWindowIcon(QIcon(QStringLiteral(":/icons/submarine.ico")));
     setWindowTitle(localizedText(QStringLiteral("NwShip — 潜艇探索助手"), QStringLiteral("NwShip — Submarine Exploration Assistant")));
+
+    {
+        const QString iniPath = QCoreApplication::applicationDirPath() + QStringLiteral("/NwShip.ini");
+        QSettings settings(iniPath, QSettings::IniFormat);
+        m_darkTheme = settings.value(QStringLiteral("theme/dark"), true).toBool();
+        const bool chinese = settings.value(QStringLiteral("language/chinese"), true).toBool();
+        m_language = chinese ? AppLanguage::Chinese : AppLanguage::English;
+    }
 
     applyTheme(m_darkTheme);
     connect(ui->actionEnglish, &QAction::triggered, this, &MainWindow::switchToEnglish);
@@ -372,7 +382,10 @@ void MainWindow::displayRoutes(const QVector<RoutePlan> &routes)
                                          : (m_darkTheme ? QStringLiteral("#5a9cf5") : QStringLiteral("#3d8bfd"));
         const QString cardBackground = hasWhitelistMatch
                                           ? (m_darkTheme ? QStringLiteral("#1f2d24") : QStringLiteral("#f0fdf4"))
-                                          : (m_darkTheme ? QStringLiteral("#24262b") : QStringLiteral("#ffffff"));
+                                          : (m_darkTheme ? QStringLiteral("#24262b") : QStringLiteral("#fafbfc"));
+        const QString cardHoverBg = hasWhitelistMatch
+                                          ? (m_darkTheme ? QStringLiteral("#243328") : QStringLiteral("#dcfce7"))
+                                          : (m_darkTheme ? QStringLiteral("#2a2d33") : QStringLiteral("#f1f5f9"));
         const QString cardBorder = hasWhitelistMatch
                                       ? accentColor
                                       : (m_darkTheme ? QStringLiteral("#3b3f46") : QStringLiteral("#d6dbe4"));
@@ -389,11 +402,12 @@ void MainWindow::displayRoutes(const QVector<RoutePlan> &routes)
             "  border-radius: 10px;"
             "  padding: 8px;"
             "}"
-            "QFrame#routeCard:hover { border-color: %3; }"
+            "QFrame#routeCard:hover { border-color: %3; background: %4; }"
         )
             .arg(cardBackground)
             .arg(cardBorder)
-            .arg(accentColor));
+            .arg(accentColor)
+            .arg(cardHoverBg));
 
         auto *cardLayout = new QVBoxLayout(card);
         cardLayout->setContentsMargins(12, 10, 12, 10);
@@ -512,12 +526,18 @@ void MainWindow::applyLanguage(AppLanguage language)
     if (ui->widget_whitelist) {
         ui->widget_whitelist->setExplorationPoints(m_explorationPoints);
         ui->widget_whitelist->restoreSelection(QStringLiteral("whitelist"));
+        ui->widget_whitelist->setLanguage(m_language == AppLanguage::Chinese);
     }
     if (ui->widget_blacklist) {
         ui->widget_blacklist->setExplorationPoints(m_explorationPoints);
         ui->widget_blacklist->restoreSelection(QStringLiteral("blacklist"));
+        ui->widget_blacklist->setLanguage(m_language == AppLanguage::Chinese);
     }
     updateConfigLabel();
+
+    const QString iniPath = QCoreApplication::applicationDirPath() + QStringLiteral("/NwShip.ini");
+    QSettings settings(iniPath, QSettings::IniFormat);
+    settings.setValue(QStringLiteral("language/chinese"), m_language == AppLanguage::Chinese);
     if (!m_lastRoutes.isEmpty()) {
         displayRoutes(m_lastRoutes);
     }
@@ -617,13 +637,13 @@ void MainWindow::refreshUiTexts()
 
 void MainWindow::applyTheme(bool dark)
 {
-    const QString windowBg = dark ? QStringLiteral("#1e1f22") : QStringLiteral("#f5f6f8");
+    const QString windowBg = dark ? QStringLiteral("#1e1f22") : QStringLiteral("#f0f2f5");
     const QString panelBg = dark ? QStringLiteral("#25262a") : QStringLiteral("#ffffff");
-    const QString borderColor = dark ? QStringLiteral("#3a3d42") : QStringLiteral("#d0d4da");
-    const QString textColor = dark ? QStringLiteral("#e8e8e8") : QStringLiteral("#222222");
-    const QString mutedText = dark ? QStringLiteral("#b8c0cc") : QStringLiteral("#475569");
+    const QString borderColor = dark ? QStringLiteral("#3a3d42") : QStringLiteral("#c8ccd4");
+    const QString textColor = dark ? QStringLiteral("#e8e8e8") : QStringLiteral("#1a1a2e");
+    const QString mutedText = dark ? QStringLiteral("#b8c0cc") : QStringLiteral("#4b5563");
     const QString accent = dark ? QStringLiteral("#3d8bfd") : QStringLiteral("#2563eb");
-    const QString accentHover = dark ? QStringLiteral("#5a9cf5") : QStringLiteral("#3b82f6");
+    const QString accentHover = dark ? QStringLiteral("#5a9cf5") : QStringLiteral("#1d4ed8");
 
     QPalette palette;
     palette.setColor(QPalette::Window, QColor(windowBg));
@@ -659,13 +679,15 @@ void MainWindow::applyTheme(bool dark)
         "  background: %5; color: %2; border: 1px solid %4;"
         "  border-radius: 6px; padding: 4px 8px; min-height: 26px;"
         "}"
+        "QSpinBox:hover, QComboBox:hover { border-color: %9; }"
         "QSpinBox:focus, QComboBox:focus { border-color: %9; }"
         "QSpinBox::up-button, QSpinBox::down-button {"
         "  background: %4; border: none; width: 18px;"
         "}"
+        "QSpinBox::up-button:hover, QSpinBox::down-button:hover { background: %9; }"
         "QComboBox QAbstractItemView {"
         "  background: %5; color: %2; border: 1px solid %4;"
-        "  selection-background-color: %9;"
+        "  selection-background-color: %9; outline: none;"
         "}"
         "QPushButton {"
         "  background: %9; color: white; border: none;"
@@ -688,9 +710,10 @@ void MainWindow::applyTheme(bool dark)
         "  border: none; border-bottom: 1px solid %4; font-weight: bold;"
         "}"
         "QMenuBar { background: %5; color: %2; }"
-        "QMenuBar::item:selected { background: %4; }"
-        "QMenu { background: %5; color: %2; border: 1px solid %4; }"
-        "QMenu::item:selected { background: %9; }"
+        "QMenuBar::item:selected { background: %4; border-radius: 4px; }"
+        "QMenu { background: %5; color: %2; border: 1px solid %4; border-radius: 6px; padding: 4px; }"
+        "QMenu::item { padding: 6px 24px; border-radius: 4px; }"
+        "QMenu::item:selected { background: %9; color: #ffffff; }"
         "QStatusBar { background: %5; color: %16; }"
     )
         .arg(windowBg)
@@ -735,4 +758,8 @@ void MainWindow::applyTheme(bool dark)
 
     ui->actionLight_Dark->setText(dark ? QStringLiteral("切换浅色主题")
                                        : QStringLiteral("切换深色主题"));
+
+    const QString iniPath = QCoreApplication::applicationDirPath() + QStringLiteral("/NwShip.ini");
+    QSettings settings(iniPath, QSettings::IniFormat);
+    settings.setValue(QStringLiteral("theme/dark"), dark);
 }

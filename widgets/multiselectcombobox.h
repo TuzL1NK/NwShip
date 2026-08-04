@@ -45,6 +45,7 @@ public:
     void setPlaceholderText(const QString &text);
     void setAccentColor(const QColor &color);
     void applyTheme(bool dark);
+    void setLanguage(bool chinese);
 
     void saveSelection(const QString &key) const;
     void restoreSelection(const QString &key);
@@ -79,6 +80,7 @@ private:
     QList<int> m_mapIds;
     QPersistentModelIndex m_lastClickedIndex;
     bool m_darkTheme = true;
+    bool m_chinese = true;
 };
 
 #endif // MULTISELECTCOMBOBOX_H
